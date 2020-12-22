@@ -1,42 +1,42 @@
 const express = require('express');
-const Client = require('../model/Client');
+const Service = require('../model/Service');
 const router = express.Router();
 
-/* GET Clients */
-router.get('/Clients', (req, res) => {
-    Client.findAll().then((data) => {
+/* GET Services */
+router.get('/Services', (req, res) => {
+    Service.findAll().then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
         return res.json({ status: err });
     });
 });
 
-/* GET Client */
-router.get('/Client/:id', (req, res) => {
-    Client.findOne({ where: { id: req.params.id } }).then((data) => {
+/* GET Service */
+router.get('/Service/:id', (req, res) => {
+    Service.findOne({ where: { id: req.params.id } }).then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
         return res.json({ status: err });
     });
 });
 
-/* POST addClient */
-router.post('/addClient', (req, res) => {
-    Client.create({
+/* POST addService */
+router.post('/addService', (req, res) => {
+    Service.create({
         name: req.body.name,
-        telephone: req.body.telephone
+        preco: req.body.preco
     }).then(() => {
         return res.json({ status: 'SUCCESS' });
     }).catch((err) => {
         return res.json({ status: err });
     });
 });
-/* POST editClient */
-router.post('/editClient', (req, res) => {
-    const { name, telephone } = req.body;
-    Client.update({
-        name: name,
-        telephone: telephone
+/* POST editService */
+router.post('/editService', (req, res) => {
+    Service.update({
+        name: req.body.name,
+        telephone: req.body.preco
+
     }, {
         where: {
             id: req.body.id
@@ -47,9 +47,9 @@ router.post('/editClient', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST delClient */
-router.post('/delClient', (req, res) => {
-    Client.destroy({
+/* POST delService */
+router.post('/delService', (req, res) => {
+    Service.destroy({
         where: {
             id: req.body.id
         }

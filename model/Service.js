@@ -1,12 +1,12 @@
 const db = require('./Db');
 
-const Client = db.sequelize.define('clients', {
+const Service = db.sequelize.define('services', {
     name: {
         type: db.Sequelize.STRING
     },
-    telephone: {
+    preco: {
         type: db.Sequelize.STRING
     }
 });
-module.exports = Client;
-//Client.sync({ force: true });
+module.exports = Service;
+//Service.sync({ force: true });

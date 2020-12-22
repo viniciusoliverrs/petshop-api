@@ -1,28 +1,28 @@
 const express = require('express');
-const Client = require('../model/Client');
+const Animal = require('../model/Animal');
 const router = express.Router();
 
-/* GET Clients */
-router.get('/Clients', (req, res) => {
-    Client.findAll().then((data) => {
+/* GET Animals */
+router.get('/Animals', (req, res) => {
+    Animal.findAll().then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
         return res.json({ status: err });
     });
 });
 
-/* GET Client */
-router.get('/Client/:id', (req, res) => {
-    Client.findOne({ where: { id: req.params.id } }).then((data) => {
+/* GET Animal */
+router.get('/Animal/:id', (req, res) => {
+    Animal.findOne({ where: { id: req.params.id } }).then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
         return res.json({ status: err });
     });
 });
 
-/* POST addClient */
-router.post('/addClient', (req, res) => {
-    Client.create({
+/* POST addAnimal */
+router.post('/addAnimal', (req, res) => {
+    Animal.create({
         name: req.body.name,
         telephone: req.body.telephone
     }).then(() => {
@@ -31,12 +31,12 @@ router.post('/addClient', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST editClient */
-router.post('/editClient', (req, res) => {
-    const { name, telephone } = req.body;
-    Client.update({
-        name: name,
-        telephone: telephone
+/* POST editAnimal */
+router.post('/editAnimal', (req, res) => {
+    Animal.update({
+        name: req.body.name,
+        telephone: req.body.telephone
+
     }, {
         where: {
             id: req.body.id
@@ -47,9 +47,9 @@ router.post('/editClient', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST delClient */
-router.post('/delClient', (req, res) => {
-    Client.destroy({
+/* POST delAnimal */
+router.post('/delAnimal', (req, res) => {
+    Animal.destroy({
         where: {
             id: req.body.id
         }
