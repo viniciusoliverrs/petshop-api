@@ -7,7 +7,7 @@ router.get('/Animals', (req, res) => {
     Animal.findAll().then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
 
@@ -23,37 +23,37 @@ router.get('/Animal/:id', (req, res) => {
 /* POST addAnimal */
 router.post('/addAnimal', (req, res) => {
     Animal.create({
-        name: req.body.name,
-        telephone: req.body.telephone
+        size: req.body.size,
+        breed: req.body.breed
     }).then(() => {
         return res.json({ status: 'OK' });
     }).catch((err) => {
         return res.json({ status: "ERR" });
     });
 });
-/* POST editAnimal */
-router.post('/editAnimal', (req, res) => {
+/* PUT editAnimal */
+router.put('/editAnimal', (req, res) => {
     Animal.update({
-        name: req.body.name,
-        telephone: req.body.telephone
+        size: req.body.size,
+        breed: req.body.breed
     }, {
         where: {
             id: req.body.id
         }
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.json({ status: 'OK' });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
-/* POST delAnimal */
-router.post('/delAnimal', (req, res) => {
+/* DELETE delAnimal */
+router.delete('/delAnimal', (req, res) => {
     Animal.destroy({
         where: {
             id: req.body.id
         }
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.json({ status: 'OK' });
     }).catch((err) => {
         return res.json({ status: err });
     });
