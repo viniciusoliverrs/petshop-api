@@ -9,4 +9,4 @@ const Client = db.sequelize.define('clients', {
     }
 });
 module.exports = Client;
-Client.sync({ force: true });
+//Client.sync({ force: true });

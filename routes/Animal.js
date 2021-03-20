@@ -13,11 +13,10 @@ router.get('/Animals', (req, res) => {
 
 /* GET Animal */
 router.get('/Animal/:id', (req, res) => {
-    if (!req.params.id.isInteger()) return res.status(200).json({ status: 'OK', mensagem: "Incorrect parameter type!" })
     Animal.findOne({ where: { id: req.params.id } }).then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
 
@@ -27,9 +26,9 @@ router.post('/addAnimal', (req, res) => {
         name: req.body.name,
         telephone: req.body.telephone
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.json({ status: 'OK' });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
 /* POST editAnimal */
@@ -37,7 +36,6 @@ router.post('/editAnimal', (req, res) => {
     Animal.update({
         name: req.body.name,
         telephone: req.body.telephone
-
     }, {
         where: {
             id: req.body.id

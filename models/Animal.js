@@ -9,4 +9,4 @@ const Animal = db.sequelize.define('animals', {
     }
 });
 module.exports = Animal;
-Animal.sync({ force: true });
+//Animal.sync({ force: true });

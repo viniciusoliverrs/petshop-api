@@ -9,4 +9,4 @@ const Service = db.sequelize.define('services', {
     }
 });
 module.exports = Service;
-Service.sync({ force: true });
+//Service.sync({ force: true });
