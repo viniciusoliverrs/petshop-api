@@ -1,5 +1,5 @@
 const express = require('express');
-const Animal = require('../model/Animal');
+const Animal = require('../models/Animal');
 const router = express.Router();
 
 /* GET Animals */
@@ -13,6 +13,7 @@ router.get('/Animals', (req, res) => {
 
 /* GET Animal */
 router.get('/Animal/:id', (req, res) => {
+    if (!req.params.id.isInteger()) return res.status(200).json({ status: 'OK', mensagem: "Incorrect parameter type!" })
     Animal.findOne({ where: { id: req.params.id } }).then((data) => {
         return res.json({ item: data });
     }).catch((err) => {
