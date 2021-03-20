@@ -4,9 +4,9 @@ const Service = db.sequelize.define('services', {
     name: {
         type: db.Sequelize.STRING
     },
-    preco: {
+    price: {
         type: db.Sequelize.STRING
     }
 });
 module.exports = Service;
-//Service.sync({ force: true });
+Service.sync({ force: true });

@@ -1,12 +1,12 @@
 const db = require('./Db');
 
 const Animal = db.sequelize.define('animals', {
-    tamanho: {
+    size: {
         type: db.Sequelize.STRING
     },
-    raca: {
+    breed: {
         type: db.Sequelize.STRING
     }
 });
 module.exports = Animal;
-//Animal.sync({ force: true });
+Animal.sync({ force: true });

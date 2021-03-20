@@ -21,4 +21,4 @@ const Schedule = db.sequelize.define('schedules', {
     }
 });
 module.exports = Schedule;
-//Schedule.sync({ force: true });
+Schedule.sync({ force: true });
