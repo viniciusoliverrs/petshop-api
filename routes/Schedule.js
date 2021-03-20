@@ -39,8 +39,8 @@ router.post('/addSchedule', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST editSchedule */
-router.post('/editSchedule', (req, res) => {
+/* PUT editSchedule */
+router.put('/editSchedule', (req, res) => {
     Schedule.update({
         client_id: req.body.client_id,
         animal_id: req.body.animal_id,
@@ -58,8 +58,8 @@ router.post('/editSchedule', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST delSchedule */
-router.post('/delSchedule', (req, res) => {
+/* DELETE delSchedule */
+router.delete('/delSchedule', (req, res) => {
     Schedule.destroy({
         where: {
             id: req.params.id

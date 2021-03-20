@@ -31,8 +31,8 @@ router.post('/addClient', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST editClient */
-router.post('/editClient', (req, res) => {
+/* PUT editClient */
+router.put('/editClient', (req, res) => {
     const { name, telephone } = req.body;
     Client.update({
         name: name,
@@ -47,8 +47,8 @@ router.post('/editClient', (req, res) => {
         return res.json({ status: err });
     });
 });
-/* POST delClient */
-router.post('/delClient', (req, res) => {
+/* DELETE delClient */
+router.delete('/delClient', (req, res) => {
     Client.destroy({
         where: {
             id: req.body.id

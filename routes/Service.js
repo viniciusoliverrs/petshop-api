@@ -5,18 +5,18 @@ const router = express.Router();
 /* GET Services */
 router.get('/Services', (req, res) => {
     Service.findAll().then((data) => {
-        return res.json({ item: data });
+        return res.json({ status: "OK", item: data });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR", item: [] });
     });
 });
 
 /* GET Service */
 router.get('/Service/:id', (req, res) => {
     Service.findOne({ where: { id: req.params.id } }).then((data) => {
-        return res.json({ item: data });
+        return res.json({ status: "OK", item: data });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR", item: [] });
     });
 });
 
@@ -26,13 +26,13 @@ router.post('/addService', (req, res) => {
         name: req.body.name,
         preco: req.body.preco
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.json({ status: 'OK' });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
-/* POST editService */
-router.post('/editService', (req, res) => {
+/* PUT editService */
+router.put('/editService', (req, res) => {
     Service.update({
         name: req.body.name,
         telephone: req.body.preco
@@ -42,21 +42,21 @@ router.post('/editService', (req, res) => {
             id: req.body.id
         }
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.status(200).json({ status: "OK" });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.status(500).json({ status: "ERR" });
     });
 });
-/* POST delService */
-router.post('/delService', (req, res) => {
+/* DELETE delService */
+router.delete('/delService', (req, res) => {
     Service.destroy({
         where: {
             id: req.body.id
         }
     }).then(() => {
-        return res.json({ status: 'SUCCESS' });
+        return res.status(200).json({ status: "OK" });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.status(500).json({ status: "ERR" });
     });
 });
 

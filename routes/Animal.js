@@ -5,18 +5,18 @@ const router = express.Router();
 /* GET Animals */
 router.get('/Animals', (req, res) => {
     Animal.findAll().then((data) => {
-        return res.json({ item: data });
+        return res.json({ status: "OK", item: data });
     }).catch((err) => {
-        return res.json({ status: "ERR" });
+        return res.json({ status: "ERR", item: [] });
     });
 });
 
 /* GET Animal */
 router.get('/Animal/:id', (req, res) => {
     Animal.findOne({ where: { id: req.params.id } }).then((data) => {
-        return res.json({ item: data });
+        return res.json({ status: "OK", item: data });
     }).catch((err) => {
-        return res.json({ status: "ERR" });
+        return res.json({ status: "ERR", item: [] });
     });
 });
 
@@ -55,7 +55,7 @@ router.delete('/delAnimal', (req, res) => {
     }).then(() => {
         return res.json({ status: 'OK' });
     }).catch((err) => {
-        return res.json({ status: err });
+        return res.json({ status: "ERR" });
     });
 });
 
